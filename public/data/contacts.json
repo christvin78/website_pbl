@@ -1,0 +1,25 @@
+{
+    "data": [
+  {
+    "id": 1,
+    "nama": "Andi",
+    "email": "andi@email.com",
+    "pesan": "Halo, saya mau konsultasi website",
+    "phone": "08123456789",       
+    "source": "website",          
+    "status": "baru",             
+    "date": "2025-08-25T09:15:30.123Z"
+  },
+  {
+    "id": 2,
+    "nama": "Budi",
+    "email": "budi@email.com",
+    "pesan": "Saya butuh website toko online",
+    "phone": "",
+    "source": "website",
+    "status": "baru",
+    "date": "2025-08-25T09:20:45.456Z"
+  }
+]
+
+}
