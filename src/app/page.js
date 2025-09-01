@@ -233,127 +233,167 @@ export default function App() {
         </div>
       </section>
 
-      {/* ✅ Portfolio Section (Horizontal Scroll) */}
-      <section id="portfolio" className="section portfolio-section">
-        <motion.h2
-          initial="hiddenUp"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeSlide}
-          transition={{ duration: 0.8 }}
+   {/* ✅ Portfolio Section (Horizontal Scroll) */}
+<section id="portfolio" className="section portfolio-section">
+  <motion.h2
+    initial="hiddenUp"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={fadeSlide}
+    transition={{ duration: 0.8 }}
+  >
+    Portfolio
+  </motion.h2>
+
+  <div style={{ position: "relative" }}>
+    {/* Tombol Scroll Kiri */}
+    <button
+      onClick={() => {
+        document.getElementById("portfolio-scroll").scrollBy({ left: -300, behavior: "smooth" });
+      }}
+      style={{
+        position: "absolute",
+        left: 0,
+        top: "40%",
+        zIndex: 10,
+        background: "rgba(0,0,0,0.5)",
+        color: "#fff",
+        border: "none",
+        borderRadius: "50%",
+        width: "40px",
+        height: "40px",
+        cursor: "pointer",
+      }}
+    >
+      ◀
+    </button>
+
+    {/* Container Scroll */}
+    <div
+      id="portfolio-scroll"
+      className="portfolio-scroll"
+      style={{
+        display: "flex",
+        gap: "1rem",
+        overflowX: "auto",
+        padding: "1rem",
+        scrollSnapType: "x mandatory",
+        scrollbarWidth: "none", // Firefox
+      }}
+    >
+      {[
+        { title: "Project A", img: "/portfolio/PROJEK.jpg", link: "https://quiz-isa-charity.vercel.app/" },
+        { title: "Project B", img: "/portfolio/PROJEK1.jpg", link:"https://osis-smk-triratna.vercel.app/" },
+        { title: "Project C", img: "/portfolio/PROJEK2.jpg", link: ""},
+        { title: "Project D", img: "/portfolio/PROJEK3.jpg", link: "" },
+        { title: "Project E", img: "/portfolio/PROJEK4.jpg", link: "http://book-quest-chi.vercel.app" },
+        { title: "Project F", img: "/portfolio/PROJEK5.jpg", link: "http://dessert-shop-v2.vercel.app" },
+      ].map((project, i) => (
+        <motion.div
+          key={i}
+          whileHover={{ scale: 1.05 }}
+          className="portfolio-card"
+          style={{
+            minWidth: "250px",
+            flex: "0 0 auto",
+            position: "relative",
+            scrollSnapAlign: "center",
+          }}
         >
-          Portfolio
-        </motion.h2>
-
-        <div style={{ position: "relative" }}>
-          {/* Tombol Scroll Kiri */}
-          <button
-            onClick={() => {
-              document.getElementById("portfolio-scroll").scrollBy({ left: -300, behavior: "smooth" });
-            }}
-            style={{
-              position: "absolute",
-              left: 0,
-              top: "40%",
-              zIndex: 10,
-              background: "rgba(0,0,0,0.5)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "50%",
-              width: "40px",
-              height: "40px",
-              cursor: "pointer",
-            }}
-          >
-            ◀
-          </button>
-
-          {/* Container Scroll */}
-          <div
-            id="portfolio-scroll"
-            className="portfolio-scroll"
-            style={{
-              display: "flex",
-              gap: "1rem",
-              overflowX: "auto",
-              padding: "1rem",
-              scrollSnapType: "x mandatory",
-              scrollbarWidth: "none", // Firefox
-            }}
-          >
-            {[
-              { title: "Project A", img: "/portfolio/PROJEK.jpg" },
-              { title: "Project B", img: "/portfolio/PROJEK1.jpg" },
-              { title: "Project C", img: "/portfolio/PROJEK2.jpg" },
-              { title: "Project D", img: "/portfolio/PROJEK3.jpg" },
-              { title: "Project E", img: "/portfolio/PROJEK4.jpg" },
-              { title: "Project F", img: "/portfolio/PROJEK5.jpg" },
-            ].map((project, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05 }}
-                className="portfolio-card"
+          {project.link ? (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <img
+                src={project.img}
+                alt={project.title}
+                className="portfolio-img"
                 style={{
-                  minWidth: "250px",
-                  flex: "0 0 auto",
-                  position: "relative",
-                  scrollSnapAlign: "center",
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+              <div
+                className="portfolio-overlay"
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  right: "0",
+                  background: "rgba(0,0,0,0.6)",
+                  color: "white",
+                  padding: "0.5rem",
+                  borderBottomLeftRadius: "10px",
+                  borderBottomRightRadius: "10px",
                 }}
               >
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="portfolio-img"
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "cover",
-                    borderRadius: "10px",
-                  }}
-                />
-                <div
-                  className="portfolio-overlay"
-                  style={{
-                    position: "absolute",
-                    bottom: "0",
-                    left: "0",
-                    right: "0",
-                    background: "rgba(0,0,0,0.6)",
-                    color: "white",
-                    padding: "0.5rem",
-                    borderBottomLeftRadius: "10px",
-                    borderBottomRightRadius: "10px",
-                  }}
-                >
-                  <h3>{project.title}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                <h3>{project.title}</h3>
+              </div>
+            </a>
+          ) : (
+            <>
+              <img
+                src={project.img}
+                alt={project.title}
+                className="portfolio-img"
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+              <div
+                className="portfolio-overlay"
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  right: "0",
+                  background: "rgba(0,0,0,0.6)",
+                  color: "white",
+                  padding: "0.5rem",
+                  borderBottomLeftRadius: "10px",
+                  borderBottomRightRadius: "10px",
+                }}
+              >
+                <h3>{project.title}</h3>
+              </div>
+            </>
+          )}
+        </motion.div>
+      ))}
+    </div>
 
-          {/* Tombol Scroll Kanan */}
-          <button
-            onClick={() => {
-              document.getElementById("portfolio-scroll").scrollBy({ left: 300, behavior: "smooth" });
-            }}
-            style={{
-              position: "absolute",
-              right: 0,
-              top: "40%",
-              zIndex: 10,
-              background: "rgba(0,0,0,0.5)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "50%",
-              width: "40px",
-              height: "40px",
-              cursor: "pointer",
-            }}
-          >
-            ▶
-          </button>
-        </div>
-      </section>
+    {/* Tombol Scroll Kanan */}
+    <button
+      onClick={() => {
+        document.getElementById("portfolio-scroll").scrollBy({ left: 300, behavior: "smooth" });
+      }}
+      style={{
+        position: "absolute",
+        right: 0,
+        top: "40%",
+        zIndex: 10,
+        background: "rgba(0,0,0,0.5)",
+        color: "#fff",
+        border: "none",
+        borderRadius: "50%",
+        width: "40px",
+        height: "40px",
+        cursor: "pointer",
+      }}
+    >
+      ▶
+    </button>
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
       <section id="testimonials" className="section testimonials-section">
