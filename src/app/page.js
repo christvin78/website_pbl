@@ -53,7 +53,6 @@ export default function App() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Tutup menu saat link diklik
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -69,7 +68,6 @@ export default function App() {
         
         {/* Tombol Hamburger */}
         <button className="hamburger" onClick={toggleMenu}>
-          
           {isMenuOpen ? '✖' : '☰'}
         </button>
 
