@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import "./globals.css" // Pastikan Anda mengimpor file CSS
 
 const fadeSlide = {
   hiddenUp: { opacity: 0, y: 50 },
@@ -16,6 +17,7 @@ export default function App() {
   });
 
   const [status, setStatus] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State untuk mengontrol menu
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,8 +28,7 @@ export default function App() {
     setStatus("Mengirim...");
 
     try {
-      // Mengirim data ke Formspree
-      const res = await fetch("https://formspree.io/f/xqadzwdw", { // Endpoint Formspree Anda yang sudah diperbaiki
+      const res = await fetch("https://formspree.io/f/xqadzwdw", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +38,7 @@ export default function App() {
 
       if (res.ok) {
         setStatus("Pesan terkirim ✅");
-        setFormData({ nama: "", email: "", pesan: "" }); // Mengosongkan formulir setelah berhasil
+        setFormData({ nama: "", email: "", pesan: "" });
       } else {
         const errorData = await res.json();
         throw new Error(errorData.error || "Gagal mengirim pesan ke Formspree.");
@@ -48,6 +49,15 @@ export default function App() {
     }
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Tutup menu saat link diklik
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -56,16 +66,23 @@ export default function App() {
           <div><img src="/portfolio/logo.jpg" alt="WebCompany Logo" className="logo" /></div>
           <h1>PT.CONSTRE</h1>
         </div>
-        <div>
-          <a href="#hero">Home</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#team">Team</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
+        
+        {/* Tombol Hamburger */}
+        <button className="hamburger" onClick={toggleMenu}>
+          
+          {isMenuOpen ? '✖' : '☰'}
+        </button>
+
+        {/* Menu Navigasi */}
+        <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+          <a href="#hero" onClick={closeMenu}>Home</a>
+          <a href="#about" onClick={closeMenu}>About</a>
+          <a href="#services" onClick={closeMenu}>Services</a>
+          <a href="#pricing" onClick={closeMenu}>Pricing</a>
+          <a href="#portfolio" onClick={closeMenu}>Portfolio</a>
+          <a href="#testimonials" onClick={closeMenu}>Testimonials</a>
+          <a href="#team" onClick={closeMenu}>Team</a>
+          <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
       </nav>
 
@@ -233,167 +250,166 @@ export default function App() {
         </div>
       </section>
 
-   {/* ✅ Portfolio Section (Horizontal Scroll) */}
-<section id="portfolio" className="section portfolio-section">
-  <motion.h2
-    initial="hiddenUp"
-    whileInView="visible"
-    viewport={{ once: true }}
-    variants={fadeSlide}
-    transition={{ duration: 0.8 }}
-  >
-    Portfolio
-  </motion.h2>
-
-  <div style={{ position: "relative" }}>
-    {/* Tombol Scroll Kiri */}
-    <button
-      onClick={() => {
-        document.getElementById("portfolio-scroll").scrollBy({ left: -300, behavior: "smooth" });
-      }}
-      style={{
-        position: "absolute",
-        left: 0,
-        top: "40%",
-        zIndex: 10,
-        background: "rgba(0,0,0,0.5)",
-        color: "#fff",
-        border: "none",
-        borderRadius: "50%",
-        width: "40px",
-        height: "40px",
-        cursor: "pointer",
-      }}
-    >
-      ◀
-    </button>
-
-    {/* Container Scroll */}
-    <div
-      id="portfolio-scroll"
-      className="portfolio-scroll"
-      style={{
-        display: "flex",
-        gap: "1rem",
-        overflowX: "auto",
-        padding: "1rem",
-        scrollSnapType: "x mandatory",
-        scrollbarWidth: "none", // Firefox
-      }}
-    >
-      {[
-        { title: "Project A", img: "/portfolio/PROJEK.jpg", link: "https://quiz-isa-charity.vercel.app/" },
-        { title: "Project B", img: "/portfolio/PROJEK1.jpg", link:"https://osis-smk-triratna.vercel.app/" },
-        { title: "Project C", img: "/portfolio/PROJEK2.jpg", link: ""},
-        { title: "Project D", img: "/portfolio/PROJEK3.jpg", link: "" },
-        { title: "Project E", img: "/portfolio/PROJEK4.jpg", link: "http://book-quest-chi.vercel.app" },
-        { title: "Project F", img: "/portfolio/PROJEK5.jpg", link: "http://dessert-shop-v2.vercel.app" },
-      ].map((project, i) => (
-        <motion.div
-          key={i}
-          whileHover={{ scale: 1.05 }}
-          className="portfolio-card"
-          style={{
-            minWidth: "250px",
-            flex: "0 0 auto",
-            position: "relative",
-            scrollSnapAlign: "center",
-          }}
+      {/* Portfolio Section (Horizontal Scroll) */}
+      <section id="portfolio" className="section portfolio-section">
+        <motion.h2
+          initial="hiddenUp"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeSlide}
+          transition={{ duration: 0.8 }}
         >
-          {project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <img
-                src={project.img}
-                alt={project.title}
-                className="portfolio-img"
+          Portfolio
+        </motion.h2>
+
+        <div style={{ position: "relative" }}>
+          {/* Tombol Scroll Kiri */}
+          <button
+            onClick={() => {
+              document.getElementById("portfolio-scroll").scrollBy({ left: -300, behavior: "smooth" });
+            }}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: "40%",
+              zIndex: 10,
+              background: "rgba(0,0,0,0.5)",
+              color: "#fff",
+              border: "none",
+              borderRadius: "50%",
+              width: "40px",
+              height: "40px",
+              cursor: "pointer",
+            }}
+          >
+            ◀
+          </button>
+
+          {/* Container Scroll */}
+          <div
+            id="portfolio-scroll"
+            className="portfolio-scroll"
+            style={{
+              display: "flex",
+              gap: "1rem",
+              overflowX: "auto",
+              padding: "1rem",
+              scrollSnapType: "x mandatory",
+              scrollbarWidth: "none", // Firefox
+            }}
+          >
+            {[
+              { title: "Project A", img: "/portfolio/PROJEK.jpg", link: "https://quiz-isa-charity.vercel.app/" },
+              { title: "Project B", img: "/portfolio/PROJEK1.jpg", link:"https://osis-smk-triratna.vercel.app/" },
+              { title: "Project C", img: "/portfolio/PROJEK2.jpg", link: ""},
+              { title: "Project D", img: "/portfolio/PROJEK3.jpg", link: "" },
+              { title: "Project E", img: "/portfolio/PROJEK4.jpg", link: "http://book-quest-chi.vercel.app" },
+              { title: "Project F", img: "/portfolio/PROJEK5.jpg", link: "http://dessert-shop-v2.vercel.app" },
+            ].map((project, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="portfolio-card"
                 style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "10px",
-                }}
-              />
-              <div
-                className="portfolio-overlay"
-                style={{
-                  position: "absolute",
-                  bottom: "0",
-                  left: "0",
-                  right: "0",
-                  background: "rgba(0,0,0,0.6)",
-                  color: "white",
-                  padding: "0.5rem",
-                  borderBottomLeftRadius: "10px",
-                  borderBottomRightRadius: "10px",
+                  minWidth: "250px",
+                  flex: "0 0 auto",
+                  position: "relative",
+                  scrollSnapAlign: "center",
                 }}
               >
-                <h3>{project.title}</h3>
-              </div>
-            </a>
-          ) : (
-            <>
-              <img
-                src={project.img}
-                alt={project.title}
-                className="portfolio-img"
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "10px",
-                }}
-              />
-              <div
-                className="portfolio-overlay"
-                style={{
-                  position: "absolute",
-                  bottom: "0",
-                  left: "0",
-                  right: "0",
-                  background: "rgba(0,0,0,0.6)",
-                  color: "white",
-                  padding: "0.5rem",
-                  borderBottomLeftRadius: "10px",
-                  borderBottomRightRadius: "10px",
-                }}
-              >
-                <h3>{project.title}</h3>
-              </div>
-            </>
-          )}
-        </motion.div>
-      ))}
-    </div>
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <img
+                      src={project.img}
+                      alt={project.title}
+                      className="portfolio-img"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        objectFit: "cover",
+                        borderRadius: "10px",
+                      }}
+                    />
+                    <div
+                      className="portfolio-overlay"
+                      style={{
+                        position: "absolute",
+                        bottom: "0",
+                        left: "0",
+                        right: "0",
+                        background: "rgba(0,0,0,0.6)",
+                        color: "white",
+                        padding: "0.5rem",
+                        borderBottomLeftRadius: "10px",
+                        borderBottomRightRadius: "10px",
+                      }}
+                    >
+                      <h3>{project.title}</h3>
+                    </div>
+                  </a>
+                ) : (
+                  <>
+                    <img
+                      src={project.img}
+                      alt={project.title}
+                      className="portfolio-img"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        objectFit: "cover",
+                        borderRadius: "10px",
+                      }}
+                    />
+                    <div
+                      className="portfolio-overlay"
+                      style={{
+                        position: "absolute",
+                        bottom: "0",
+                        left: "0",
+                        right: "0",
+                        background: "rgba(0,0,0,0.6)",
+                        color: "white",
+                        padding: "0.5rem",
+                        borderBottomLeftRadius: "10px",
+                        borderBottomRightRadius: "10px",
+                      }}
+                    >
+                      <h3>{project.title}</h3>
+                    </div>
+                  </>
+                )}
+              </motion.div>
+            ))}
+          </div>
 
-    {/* Tombol Scroll Kanan */}
-    <button
-      onClick={() => {
-        document.getElementById("portfolio-scroll").scrollBy({ left: 300, behavior: "smooth" });
-      }}
-      style={{
-        position: "absolute",
-        right: 0,
-        top: "40%",
-        zIndex: 10,
-        background: "rgba(0,0,0,0.5)",
-        color: "#fff",
-        border: "none",
-        borderRadius: "50%",
-        width: "40px",
-        height: "40px",
-        cursor: "pointer",
-      }}
-    >
-      ▶
-    </button>
-  </div>
-</section>
-
+          {/* Tombol Scroll Kanan */}
+          <button
+            onClick={() => {
+              document.getElementById("portfolio-scroll").scrollBy({ left: 300, behavior: "smooth" });
+            }}
+            style={{
+              position: "absolute",
+              right: 0,
+              top: "40%",
+              zIndex: 10,
+              background: "rgba(0,0,0,0.5)",
+              color: "#fff",
+              border: "none",
+              borderRadius: "50%",
+              width: "40px",
+              height: "40px",
+              cursor: "pointer",
+            }}
+          >
+            ▶
+          </button>
+        </div>
+      </section>
 
       {/* Testimonials Section */}
       <section id="testimonials" className="section testimonials-section">
@@ -450,34 +466,6 @@ export default function App() {
               className="service-card"
             >
               {member}
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section id="blog" className="section blog-section">
-        <motion.h2
-          initial="hiddenDown"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeSlide}
-          transition={{ duration: 0.8 }}
-        >
-          Blog & News
-        </motion.h2>
-        <div className="service-grid">
-          {["Artikel 1", "Artikel 2", "Artikel 3"].map((article, i) => (
-            <motion.div
-              key={i}
-              initial="hiddenDown"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeSlide}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              className="service-card"
-            >
-              {article}
             </motion.div>
           ))}
         </div>
@@ -596,7 +584,6 @@ export default function App() {
             rel="noopener noreferrer"
             className="whatsapp-button"
           >
-            {/* Animasi whileHover ditambahkan di sini */}
             <motion.div
               whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(0, 255, 0, 0.7)" }}
               style={{
@@ -606,7 +593,7 @@ export default function App() {
                 color: 'white',
                 width: "fit-content",
                 cursor: "pointer",
-                transition: "all 0.3s ease-in-out" // Tambahkan transisi untuk efek yang lebih halus
+                transition: "all 0.3s ease-in-out"
               }}
             >
               Hubungi Whatsapp Kami
@@ -616,7 +603,7 @@ export default function App() {
       </section>
 
       {/* Footer Section */}
-    
+      
     </div>
   );
 }
