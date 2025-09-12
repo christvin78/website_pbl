@@ -66,13 +66,14 @@ export default function App() {
           <h1>PT.CONSTRE</h1>
         </div>
         
-        {/* Tombol Hamburger */}
+         
+       {/* Tombol Hamburger */}
         <button className="hamburger" onClick={toggleMenu}>
-          {isMenuOpen ? '✖' : '☰'}
+          {isMenuOpen ? "✖" : "☰"}
         </button>
 
         {/* Menu Navigasi */}
-        <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+        <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
           <a href="#hero" onClick={closeMenu}>Home</a>
           <a href="#about" onClick={closeMenu}>About</a>
           <a href="#services" onClick={closeMenu}>Services</a>
@@ -83,6 +84,7 @@ export default function App() {
           <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
       </nav>
+
 
       {/* Hero Section */}
       <section id="hero" className="hero">
