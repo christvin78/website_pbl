@@ -248,9 +248,9 @@ body {
 .team-avatar {
   width: 120px;
   height: 120px;
-  border-radius: 50%;          /* bikin bulat */
-  object-fit: cover;           /* biar crop rapi */
-  border: 3px solid #1e3c72;   /* kasih border */
+  border-radius: 50%;          
+  object-fit: cover;           
+  border: 3px solid #1e3c72;   
   margin-bottom: 15px;
 }
 
@@ -442,7 +442,7 @@ body {
   font-weight: 500;
 }
 
-/* === RESPONSIVE (MOBILE) === */
+/* === RESPONSIVE (MOBILE & TABLET) === */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -494,6 +494,26 @@ body {
   .portfolio-img {
     height: 180px;
   }
+
+  /* Team grid di tablet/HP */
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .team-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .team-name {
+    font-size: 1.1rem;
+  }
+
+  .team-bio {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -507,6 +527,23 @@ body {
 
   .section h2 {
     font-size: 2rem;
+  }
+
+  .team-card {
+    padding: 20px;
+  }
+
+  .team-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .team-name {
+    font-size: 1rem;
+  }
+
+  .team-bio {
+    font-size: 0.85rem;
   }
 }
 
