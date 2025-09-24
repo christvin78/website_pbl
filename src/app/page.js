@@ -205,26 +205,33 @@ export default function App() {
         </motion.h2>
         <div className="pricing-grid">
           {[
+             {
+              title: "LANDING PAGE",
+              price: "Rp 300.000",
+              features: ["Header Menarik","Keunggulan Produk/Jasa","Penjelasan Produk/Jasa","Testimoni & Review","Integrasi Media Sosial", "Desain Premium","3x Revisi"],
+            },  
+             
             {
-              title: "Basic",
-              price: "Rp 2.000.000",
-              features: ["1 Halaman", "Desain Responsif", "SEO Dasar", "1x Revisi"],
-            },
-            {
-              title: "Standard",
-              price: "Rp 5.000.000",
-              features: ["5 Halaman", "Desain Premium", "SEO Lengkap", "3x Revisi"],
-            },
-            {
-              title: "Premium",
-              price: "Rp 10.000.000",
+              title: "WEBSITE PROFIL STARTUP",
+              price: "Rp 500.000",
               features: [
-                "Halaman Unlimited",
+                "Halaman Beranda",
                 "Desain Kustom",
-                "SEO + Optimasi Kecepatan",
+                "Halaman Tentang Kami",
+                "Halaman Produk/Layanan",
+                "Halaman Investor",
+                "Halaman Karir",
                 "Revisi Unlimited",
               ],
             },
+            {
+              title: "WEBSITE PROFIL USAHA",
+              price: "Rp 800.000",
+              features: ["Halaman Beranda","Halaman Produk/Layanan","Halaman Lokasi & Jam Operasional","Halaman Kontak", "Desain Responsif", "Halaman Profil Perusahaan", "1x Revisi"],
+            },
+           
+           
+            
           ].map((pkg, i) => (
             <motion.div
               key={i}
@@ -412,65 +419,121 @@ export default function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="section testimonials-section">
-        <motion.h2
-          initial="hiddenDown"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeSlide}
-          transition={{ duration: 0.8 }}
-        >
-          Testimonials
-        </motion.h2>
-        <div className="service-grid">
-          {[
-            "Client A: Sangat puas!",
-            "Client B: Profesional & cepat",
-            "Client C: Sangat direkomendasikan",
-          ].map((testimonial, i) => (
-            <motion.div
-              key={i}
-              initial="hiddenDown"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeSlide}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              className="service-card"
-            >
-              {testimonial}
-            </motion.div>
-          ))}
-        </div>
-      </section>
+<section id="testimonials" className="section testimonials-section">
+  <motion.h2
+    initial="hiddenDown"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={fadeSlide}
+    transition={{ duration: 0.8 }}
+  >
+    Testimonials
+  </motion.h2>
 
-      {/* Team Section */}
-      <section id="team" className="section team-section">
-        <motion.h2
-          initial="hiddenUp"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeSlide}
-          transition={{ duration: 0.8 }}
-        >
-          Our Team
-        </motion.h2>
-        <div className="service-grid">
-          {["CEO", "Developer", "Designer", "Marketing"].map((member, i) => (
-            <motion.div
-              key={i}
-              initial="hiddenDown"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeSlide}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              className="service-card"
-            >
-              {member}
-            </motion.div>
-          ))}
+  <div className="service-grid">
+    {[
+      {
+        name: "Alice Johnson",
+        role: "Web Designer",
+        avatar: "/clientteam/client.jpg", 
+        comment: "Website ini sangat membantu, tampilannya bersih dan mudah digunakan!"
+      },
+      {
+        name: "Budi Santoso",
+        role: "Developer",
+        avatar: "/clientteam/client1.jpg",
+        comment: "Konten dan navigasinya jelas, pengalaman pengguna sangat bagus."
+      },
+      {
+        name: "Citra Dewi",
+        role: "Entrepreneur",
+        avatar: "/clientteam/client2.jpg",
+        comment: "Saya merekomendasikan website ini untuk semua yang ingin mencari informasi cepat."
+      }
+    ].map((testimonial, i) => (
+      <motion.div
+        key={i}
+        initial="hiddenDown"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeSlide}
+        transition={{ duration: 0.6, delay: i * 0.2 }}
+        className="service-card testimonial-card"
+      >
+        <div className="testimonial-profile">
+          <img
+            src={testimonial.avatar}
+            alt={testimonial.name}
+            className="testimonial-avatar"
+          />
+          <div className="testimonial-info">
+            <h4 className="testimonial-name">{testimonial.name}</h4>
+            <p className="testimonial-role">{testimonial.role}</p>
+          </div>
         </div>
-      </section>
+        <p className="testimonial-comment">"{testimonial.comment}"</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
+
+    {/* Team Section */}
+<section id="team" className="section team-section">
+  <motion.h2
+    initial="hiddenUp"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={fadeSlide}
+    transition={{ duration: 0.8 }}
+  >
+    Our Team
+  </motion.h2>
+
+  <div className="team-grid">
+    {[
+      {
+        name: "Alice Johnson",
+        role: "CEO",
+        img: "/team/alice.jpg",
+        bio: "Visionary leader with 10 years of experience in tech industry."
+      },
+      {
+        name: "Bob Smith",
+        role: "Developer",
+        img: "/team/bob.jpg",
+        bio: "Full-stack developer passionate about building scalable web apps."
+      },
+      {
+        name: "Clara Lee",
+        role: "Designer",
+        img: "/team/clara.jpg",
+        bio: "Creative designer crafting user-friendly and modern interfaces."
+      },
+      {
+        name: "David Kim",
+        role: "Marketing",
+        img: "/team/david.jpg",
+        bio: "Marketing expert focused on growth and brand strategy."
+      }
+    ].map((member, i) => (
+      <motion.div
+        key={i}
+        initial="hiddenDown"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeSlide}
+        transition={{ duration: 0.6, delay: i * 0.2 }}
+        className="team-card"
+      >
+        <img src={member.img} alt={member.name} className="team-avatar" />
+        <h3 className="team-name">{member.name}</h3>
+        <p className="team-role">{member.role}</p>
+        <p className="team-bio">{member.bio}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
       {/* Contact Section */}
       <section id="contact" className="section contact">
         <motion.h2

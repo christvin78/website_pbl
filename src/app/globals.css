@@ -166,6 +166,62 @@ body {
   box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
 }
 
+/* === TESTIMONIAL CARDS === */
+.testimonial-card {
+  background: linear-gradient(135deg, #ffffff, #e0e7ff);
+  padding: 25px;
+  width: 260px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 500;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+  color: #1e3c72;
+}
+
+.testimonial-role {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
+}
+
+.testimonial-comment {
+  font-style: italic;
+  line-height: 1.5;
+  color: #333;
+}
+
 /* === PORTFOLIO === */
 .portfolio-grid {
   display: grid;
@@ -377,7 +433,8 @@ body {
   }
 
   .service-card,
-  .pricing-card {
+  .pricing-card,
+  .testimonial-card {
     width: 100%;
     max-width: 320px;
   }
