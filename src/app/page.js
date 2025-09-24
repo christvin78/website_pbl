@@ -433,21 +433,21 @@ export default function App() {
   <div className="service-grid">
     {[
       {
-        name: "Alice Johnson",
+        name: "Wirya Atmaja Gunawan",
         role: "Web Designer",
-        avatar: "/clientteam/client.jpg", 
+        avatar: "/clientteam/team3.png", 
         comment: "Website ini sangat membantu, tampilannya bersih dan mudah digunakan!"
       },
       {
-        name: "Budi Santoso",
+        name: "Lionel Liaw",
         role: "Developer",
-        avatar: "/clientteam/client1.jpg",
+        avatar: "/clientteam/team2.jpg",
         comment: "Konten dan navigasinya jelas, pengalaman pengguna sangat bagus."
       },
       {
-        name: "Citra Dewi",
+        name: "WEB Craft",
         role: "Entrepreneur",
-        avatar: "/clientteam/client2.jpg",
+        avatar: "/clientteam/team4.jpg",
         comment: "Saya merekomendasikan website ini untuk semua yang ingin mencari informasi cepat."
       }
     ].map((testimonial, i) => (
@@ -496,7 +496,7 @@ export default function App() {
         name: "CherrCherryl Callista Cheniago",
         role: "CEO",
         img: "/clientteam/team.jpg",
-        bio: "Visionary leader with 10 years of experience in tech industry."
+        bio: "Visionary leader with 5 years of experience in tech industry."
       },
       {
         name: "christvin dylen",
@@ -504,18 +504,6 @@ export default function App() {
         img: "/clientteam/team1.jpg",
         bio: "Full-stack developer passionate about building scalable web apps."
       },
-      {
-        name: "lionel liaw",
-        role: "Designer",
-        img: "/clientteam/team2.jpg",
-        bio: "Creative designer crafting user-friendly and modern interfaces."
-      },
-      {
-        name: "Wirya Atmaja Gunawan",
-        role: "Marketing",
-        img: "/clientteam/team3.png",
-        bio: "Marketing expert focused on growth and brand strategy."
-      }
     ].map((member, i) => (
       <motion.div
         key={i}
