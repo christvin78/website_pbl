@@ -493,27 +493,27 @@ export default function App() {
   <div className="team-grid">
     {[
       {
-        name: "Alice Johnson",
+        name: "CherrCherryl Callista Cheniago",
         role: "CEO",
-        img: "/team/alice.jpg",
+        img: "/clientteam/team.jpg",
         bio: "Visionary leader with 10 years of experience in tech industry."
       },
       {
-        name: "Bob Smith",
+        name: "christvin dylen",
         role: "Developer",
-        img: "/team/bob.jpg",
+        img: "/clientteam/team1.jpg",
         bio: "Full-stack developer passionate about building scalable web apps."
       },
       {
-        name: "Clara Lee",
+        name: "lionel liaw",
         role: "Designer",
-        img: "/team/clara.jpg",
+        img: "/clientteam/team2.jpg",
         bio: "Creative designer crafting user-friendly and modern interfaces."
       },
       {
-        name: "David Kim",
+        name: "Wirya Atmaja Gunawan",
         role: "Marketing",
-        img: "/team/david.jpg",
+        img: "/clientteam/team3.png",
         bio: "Marketing expert focused on growth and brand strategy."
       }
     ].map((member, i) => (
